@@ -1,6 +1,5 @@
 ---
 layout: post
-description: "A ton of text to test readability."
 tags: [hello world, test，blog]
 ---
 ## Hello，world
