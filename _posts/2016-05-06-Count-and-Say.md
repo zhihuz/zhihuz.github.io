@@ -3,7 +3,7 @@ layout: post
 title: "Count and Say"
 tags: [LintCode, python,count and say,解题报告]
 ---
-##Description
+## Description
 
 The count-and-say sequence is the sequence of integers beginning as follows:
 
@@ -25,7 +25,7 @@ Example
 
 Given n = 5, return "111221".
 
-##Solution
+## Solution
 {% highlight python %}
 
 class Solution:
