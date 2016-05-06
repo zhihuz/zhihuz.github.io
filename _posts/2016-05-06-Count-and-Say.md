@@ -4,6 +4,7 @@ title: "Count and Say"
 tags: [LintCode, python,count and say,解题报告]
 ---
 ##Description
+
 The count-and-say sequence is the sequence of integers beginning as follows:
 
 1, 11, 21, 1211, 111221, ...
@@ -23,6 +24,7 @@ The sequence of integers will be represented as a string.
 Example
 
 Given n = 5, return "111221".
+
 ##Solution
 {% highlight python %}
 
