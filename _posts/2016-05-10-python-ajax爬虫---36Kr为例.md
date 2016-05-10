@@ -1,18 +1,20 @@
 ---
 layout: post
 title: "python ajax爬虫 --36Kr为例"
-tags: [python , 爬虫, ajax，36Kr]
+tags: [python , 爬虫, ajax, 36Kr]
 ---
+
 最近在倒腾ajax爬虫，顺便记录一下过程。以36Kr “早期项目” 一栏为例，大致分为如下两步。
 
 ## 解析索引页
 
 难点在于如何获取索引页的url。浏览器打开[36Kr](http://36kr.com/),按F12打开开发者工具，切换到Netwotk 面板。AJAX 一般是通过 XMLHttpRequest 对象接口发送请求的，XMLHttpRequest 一般被缩写为 XHR。所以点击XHR，清空监听到的内容。如下图:
-![](\photos\2016-5-10 34353.jpg)
+
+![](https://raw.githubusercontent.com/zhihuz/BLOG-RES/master/2016-5-10%2034353.jpg)
 
 点击页面导航栏“早期项目”，method 为 GET 的响应就是我们需要的，选中项目鼠标右键 “Copy link address”，内容如下：http://36kr.com/asynces/posts/feed_column_more.json?column=starding,这就是起始url，将url输入到浏览器地址栏，得到索引页面的josn字数据，内容如下：
 
-![](\photos\2016-5-10 34354.jpg)
+![](https://raw.githubusercontent.com/zhihuz/BLOG-RES/master/2016-5-10%2034354.jpg)
 
 推荐安装 [JSONView 插件](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=zh-CN)，这样可以看到更好看的 JSON 格式，展开折叠列等功能。然后，我们根据 JSON 数据的结构提取资讯标题，时间，和url_code（后文介绍这个字段）。
 
@@ -57,7 +59,11 @@ while (totalPage >= 1):
 
 查看网页源码，不难发现正文对应的xpath是“//div/@data-props”，解析后发现response同样为json数据，内容如下，根据json结构便可轻松获取内容。
 
+{% highlight json %}
+
 {"status":{"code":"200","message":"返回成功"},"data":{"router":"/p/5046804.html","post":{"id":45805,"title":"大咖拍卖：做线上艺术品拍卖，“经纪人”或许是互联网更容易撬动的一环","summary":"“传统机构是典型的一级市场，而拍卖是二级市场行为”","cover":"http://a.36krcnd.com/nil_class/e0edfc83-02c3-4597-9f6f-80fd734bf8f3/1.pic.jpg","url_code":5046804,"published_at":"2016-05-10T14:24:28.168+08:00","key":"2c515a1d-364c-4041-b524-b192319310c1","extra":{"source_urls":null,"jid":"","close_comment":false,"mobile_views_count":0,"related_company_type":"domestic"},"source_type":"original","related_company_id":141335,"display_tag_list":["大咖拍卖","艺术收藏","泛娱乐"],"plain_summary":"“传统机构是典型的一级市场，而拍卖是二级市场行为”","display_content":"...内容略去...","author":{"id":458247,"domain_path":"/posts/zibing","display_name":"二水水","avatar":"https://krid-assets.b0.upaiyun.com/uploads/user/avatar/327099/09d80114-dabb-4f1f-8cdc-d12f1fe7183c.jpeg!480"},"crowd_funding":"https://mobilecodec.alipay.com/show.htm?code=rex096303svi4ij2pmmckd3","internal_links":[],"source_message":"原创文章，作者：二水水"}}}
+
+{% endhighlight %}
 
 {% highlight python %}
 
