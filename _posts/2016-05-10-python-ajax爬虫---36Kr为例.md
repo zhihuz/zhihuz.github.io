@@ -18,7 +18,7 @@ tags: [python , 爬虫, ajax, 36Kr]
 
 推荐安装 [JSONView 插件](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=zh-CN)，这样可以看到更好看的 JSON 格式，展开折叠列等功能。然后，我们根据 JSON 数据的结构提取资讯标题，时间，和url_code（后文介绍这个字段）。
 
-{% highlight python %}
+{% highlight python linenos %}
 
 def parseIndex(url):
 	jsContent = requests.get(url)
@@ -39,7 +39,7 @@ def parseIndex(url):
 
 获取了起始url，那么如何模拟点击“获取更多”？可以认为这是一个翻页按钮，只要获取下一页对应的url即可。清空开发者工具，在“早期项目”栏下点击“获取更多”，同样的方法获取新的链接http://36kr.com/asynces/posts/feed_column_more.json?b_url_code=5046782&column=starding，这就是下一页的url，可将其调整为http://36kr.com/asynces/posts/feed_column_more.json?column=starding&b_url_code=5046782，并将起始url调整为http://36kr.com/asynces/posts/feed_column_more.json?column=starding&b_url_code=，注意到这个b_url_code=5046782是什么鬼，尝试在刚刚获取的json数据里搜索5046782，发现这正是最后一条资讯的url_code，想必大家应该明白了如何生成下一个索引页的链接了吧。
 
-{% highlight python %}
+{% highlight python linenos %}
 
 while (totalPage >= 1):
 		parseIndex(url)
@@ -59,13 +59,13 @@ while (totalPage >= 1):
 
 查看网页源码，不难发现正文对应的xpath是“//div/@data-props”，解析后发现response同样为json数据，内容如下，根据json结构便可轻松获取内容。
 
-{% highlight json %}
+{% highlight json linenos %}
 
 {"status":{"code":"200","message":"返回成功"},"data":{"router":"/p/5046804.html","post":{"id":45805,"title":"大咖拍卖：做线上艺术品拍卖，“经纪人”或许是互联网更容易撬动的一环","summary":"“传统机构是典型的一级市场，而拍卖是二级市场行为”","cover":"http://a.36krcnd.com/nil_class/e0edfc83-02c3-4597-9f6f-80fd734bf8f3/1.pic.jpg","url_code":5046804,"published_at":"2016-05-10T14:24:28.168+08:00","key":"2c515a1d-364c-4041-b524-b192319310c1","extra":{"source_urls":null,"jid":"","close_comment":false,"mobile_views_count":0,"related_company_type":"domestic"},"source_type":"original","related_company_id":141335,"display_tag_list":["大咖拍卖","艺术收藏","泛娱乐"],"plain_summary":"“传统机构是典型的一级市场，而拍卖是二级市场行为”","display_content":"...内容略去...","author":{"id":458247,"domain_path":"/posts/zibing","display_name":"二水水","avatar":"https://krid-assets.b0.upaiyun.com/uploads/user/avatar/327099/09d80114-dabb-4f1f-8cdc-d12f1fe7183c.jpeg!480"},"crowd_funding":"https://mobilecodec.alipay.com/show.htm?code=rex096303svi4ij2pmmckd3","internal_links":[],"source_message":"原创文章，作者：二水水"}}}
 
 {% endhighlight %}
 
-{% highlight python %}
+{% highlight python linenos %}
 
 def parseContent(contenturl):
 	res = html.parse(contenturl).xpath("//div/@data-props")[0]
@@ -79,7 +79,7 @@ def parseContent(contenturl):
 
 ## 完整代码如下
 
-{% highlight python %}
+{% highlight python linenos %}
 
 #-*-coding:utf8-*-
 
