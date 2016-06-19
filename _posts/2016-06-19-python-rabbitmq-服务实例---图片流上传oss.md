@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "python + rabbitmq 服务实例--图片流上传oss"
+title: "python rabbitmq 服务实例--图片流上传oss"
 tags: [python , rabbitmq, oss]
 ---
 ## 需求
@@ -40,7 +40,7 @@ connection.close()
 
 消费者从队列中获取url，函数download获取文件流，函数upload将其上传至oss。由于并非所有的url都是有效的，分别为这两个函数设置了失败超时次数（downloadRetryTimes和uploadRetryTimes），并用日志模块记录这个过程。文中为简化处理，将已经封装好的logger替换为print。代码中参数较多，因此统一写在了oss.ini文件中。配置文件如下：
 
-{% highlight python linenos %}
+{% highlight ini linenos %}
 
 [oss]
 AccessKeyId = ********
@@ -56,6 +56,7 @@ threadingNum = 2
 {% endhighlight %}
 
 receiver.py代码主要分三步：1.建立connection 2.建立channel 3.建立queue
+
 读取配置文件及建立连接的代码如下：
 {% highlight python linenos %}
 
@@ -87,6 +88,7 @@ channel.queue_declare(queue='upload2oss')
 {% endhighlight %}
 
 下载文件流的函数download声明如下：
+
 {% highlight python linenos %}
 
 def download(url,retryTime):
@@ -100,6 +102,7 @@ def download(url,retryTime):
 {% endhighlight %}
 
 在上传文件流至oss之前，对url对应的文件流生成唯一的名称。
+
 {% highlight python linenos %}
 
 def calSha1(url):
@@ -111,6 +114,7 @@ def calSha1(url):
 {% endhighlight %}
 
 upload函数将文件流上传至阿里oss
+
 {% highlight python linenos %}
 
 def upload(input,url,retryTime):
