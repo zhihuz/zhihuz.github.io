@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "windows codeblocks配置boost::asio"
-tags: [c++ , asio,网络库,配置]
+tags: [c++ , asio,网络]
 ---
 
 ## 下载与安装

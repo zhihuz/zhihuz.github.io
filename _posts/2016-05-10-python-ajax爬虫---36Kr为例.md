@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "python ajax爬虫 --36Kr为例"
-tags: [python , 爬虫, ajax, 36Kr]
+tags: [python , 爬虫, ajax]
 ---
 
 最近在倒腾ajax爬虫，顺便记录一下过程。以36Kr “早期项目” 一栏为例，大致分为如下两步。
