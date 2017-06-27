@@ -18,11 +18,16 @@ tags: [c++ , asio,网络库,配置]
 
 同理，点击Liner输入__$(#boost.lib)__
 
-+ 点击setting-Linker settings，在link libraries中依次添加libboost\_filesystem-mgw63-mt-d-1\_64.a(C:\boost\lib\libboost\_filesystem-mgw63-mt-d-1\_64.a),libboost\_system-mgw63-mt-d-1\_64.a(C:\boost\lib\libboost\_system-mgw63-mt-d-1\_64.a),libwsock32.a(C:\MinGW\lib\libwsock32.a),libws2\_32.a(C:\MinGW\lib\libws2\_32.a)这四个文件，在other link options中添加 __-lwsock32__,如图所示
++ 点击setting-Linker settings，在link libraries中依次添加  
+libboost\_filesystem-mgw63-mt-d-1\_64.a (C:\boost\lib\libboost\_filesystem-mgw63-mt-d-1\_64.a),  
+libboost\_system-mgw63-mt-d-1\_64.a (C:\boost\lib\libboost\_system-mgw63-mt-d-1\_64.a),  
+libwsock32.a (C:\MinGW\lib\libwsock32.a),  
+libws2\_32.a (C:\MinGW\lib\libws2\_32.a)  
+这四个文件，在other link options中添加 __-lwsock32__,如图所示
 
 ![](https://raw.githubusercontent.com/zhihuz/BLOG-RES/master/2016-11-16%2034357.jpg)
 
-+ 依次点击setting-compiler-other compiler options，添加__-lboost\_system__
++ 依次点击setting-compiler-other compiler options，添加__\-lboost\_system__
 
 ## demo测试
 
