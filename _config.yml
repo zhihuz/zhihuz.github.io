@@ -1,4 +1,4 @@
-title:            Zhihuz的博客
+﻿title:            Zhihuz的博客
 description:      记录点滴.
 disqus_shortname: 
 reading_time:     true
@@ -12,7 +12,7 @@ owner:
   name:           Zhihuz
   avatar:         avatar.jpg
   bio:            "知其不可而为之"
-  email:          solosseason@foxmail.com
+  email:          zhihuz@outlook.com
   # Social networking links used in footer. Update and remove as you like.
   twitter:        
   facebook:       solosseason
@@ -21,7 +21,8 @@ owner:
   linkedin:       志辉-张-25766491
   instagram:      
   flickr:         
-  tumblr:         
+  tumblr:
+  weibo:         2448225025
   # google plus id, include the '+', eg +mmistakes
   google_plus:
 
