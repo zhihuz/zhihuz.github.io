@@ -1,8 +1,7 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
+gem 'jekyll-paginate'
 
-gem "json"
-gem "jekyll", "~> 3.0"
-gem "jekyll-sitemap"
-gem "octopress"
-gem "jekyll-paginate"
-gem "jekyll-gist"
+gem "jekyll", "~> 4.0"
+gem "rake"
+
+gem "webrick", "~> 1.7"
