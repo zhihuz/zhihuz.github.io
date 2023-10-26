@@ -51,5 +51,5 @@ License
 Apache License 2.0.
 Copyright (c) 2015-present Huxpro
 
-Zhihuz Blog is derived from [Clean Blog Jekyll Theme (MIT License)](https://github.com/BlackrockDigital/startbootstrap-clean-blog-jekyll/)
+Zhihuz Blog is derived from [huxpro.github.io](https://github.com/Huxpro/huxpro.github.io)
 Copyright (c) 2013-2016 Blackrock Digital LLC.
