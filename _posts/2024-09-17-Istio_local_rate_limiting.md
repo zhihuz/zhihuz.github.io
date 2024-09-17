@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Istio local rate limiting"
+title: "How to set Istio local rate limiting"
 author: "Zhihuz"
 header-style: text
 tags: [Tech, Networking, Istio, K8s]
