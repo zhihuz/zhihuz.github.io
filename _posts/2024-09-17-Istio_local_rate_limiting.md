@@ -341,7 +341,6 @@ The local rate limit filter outputs statistics in the `<stat_prefix>.http_local
 | ok | Counter | Total under limit responses from the token bucket |
 | rate_limited | Counter | Total responses without an available token (but not necessarily enforced) |
 | enforced | Counter | Total number of requests for which rate limiting was applied (e.g.: 429 returned) |
-
 #### Access log
 It's highly recommended to enable access logging, with sampling, to track the behavior of the rate limit filter. Below is an example configuration to enable access logging for the `productpage` app in Istio.
 
@@ -454,6 +453,6 @@ This log provides detailed traceability for debugging and monitoring the local r
 
 ### Reference
 
-- https://istio.io/latest/docs/tasks/policy-enforcement/rate-limit/#local-rate-limit
-- https://github.com/envoyproxy/ratelimit
-- https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/local_rate_limit_filter#config-http-filters-local-rate-limit
+- [Enabling Rate Limits using Envoy](https://istio.io/latest/docs/tasks/policy-enforcement/rate-limit/#local-rate-limit)
+- [envoyproxy/ratelimit](https://github.com/envoyproxy/ratelimit)
+- [Local rate limit](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/local_rate_limit_filter#config-http-filters-local-rate-limit)
