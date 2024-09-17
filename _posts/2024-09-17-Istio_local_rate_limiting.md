@@ -341,6 +341,7 @@ The local rate limit filter outputs statistics in the `<stat_prefix>.http_local
 | ok | Counter | Total under limit responses from the token bucket |
 | rate_limited | Counter | Total responses without an available token (but not necessarily enforced) |
 | enforced | Counter | Total number of requests for which rate limiting was applied (e.g.: 429 returned) |
+
 #### Access log
 It's highly recommended to enable access logging, with sampling, to track the behavior of the rate limit filter. Below is an example configuration to enable access logging for the `productpage` app in Istio.
 
@@ -435,21 +436,21 @@ This log provides detailed traceability for debugging and monitoring the local r
 
 ### Troubleshooting
 
-**Q:** How to resolve envoy exception “local rate descriptor limit is not a multiple of token bucket fill timer”
+**Q**: How to resolve envoy exception “local rate descriptor limit is not a multiple of token bucket fill timer”
 
-**A: The local rate limit descriptor's token bucket fill interval must be a multiple of the global token bucket's fill interval** to avoid envoy exception “local rate descriptor limit is not a multiple of token bucket fill timer”. This means if your global rate limit is set to refill every 5 seconds, then the fill interval for each descriptor must be either 5 seconds or a multiple of 5 seconds (e.g., 10 seconds, 15 seconds, etc.).
+**A**: The local rate limit descriptor's token bucket fill interval must be a multiple of the global token bucket's fill interval** to avoid envoy exception “local rate descriptor limit is not a multiple of token bucket fill timer”. This means if your global rate limit is set to refill every 5 seconds, then the fill interval for each descriptor must be either 5 seconds or a multiple of 5 seconds (e.g., 10 seconds, 15 seconds, etc.).
 
 **Q**: How to resolve Envoy exception “exited with error: signal: aborted (core dumped)”
 
 **A**: Start by dumping the configuration with `istioctl pc listener <pod_name> -ojson > dump.json`. If there are rate limits for both HTTP and gRPC services, **a possible issue could be conflicting configurations**. Review the `dump.json` file and remove any redundant sections that should be shared between configurations.
 
-**Q:** The rate limits don't work after applying the EnvoyFilter. 
+**Q**: The rate limits don't work after applying the EnvoyFilter. 
 
-**A:** Set `enable_x_ratelimit_headers: DRAFT_VERSION_03` to check if any rate limit-related headers appear in the response for better observability. If there are no rate limit headers, one possible reason could be the absence of a `stat_prefix` in either the `HTTP_FILTER` or `HTTP_ROUTE`.
+**A**: Set `enable_x_ratelimit_headers: DRAFT_VERSION_03` to check if any rate limit-related headers appear in the response for better observability. If there are no rate limit headers, one possible reason could be the absence of a `stat_prefix` in either the `HTTP_FILTER` or `HTTP_ROUTE`.
 
-**Q:** How do I manage routes like `method: GET & path: /api/book` and `method: GET & path: /api/bookinfo`, both of which might have multiple query strings?
+**Q**: How do I manage routes like `method: GET & path: /api/book` and `method: GET & path: /api/bookinfo`, both of which might have multiple query strings?
 
-**A:** To handle these cases, use prefix match actions. Ensure that `method: GET & path: /api/bookinfo` is listed before `method: GET & path: /api/book` in the `rate_limits.actions` list to prevent any unintended overrides.
+**A**: To handle these cases, use prefix match actions. Ensure that `method: GET & path: /api/bookinfo` is listed before `method: GET & path: /api/book` in the `rate_limits.actions` list to prevent any unintended overrides.
 
 ### Reference
 
